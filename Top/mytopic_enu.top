@@ -1,0 +1,99 @@
+topic: ~mytopic()
+language: enu
+#add include
+include: lexicon_lex_enu.top
+
+concept:(how) ["how are you" howdy "what's up" "how do you feel"]
+
+# If User asks how the robot feels, it starts a random animation being tagged "myself",
+# answers and go to the label %howAreYou
+u:(~how)  I'm fine, thank you. And you, ^gotoRandom(general)
+u:(~hello) ~hello ^gotoRandom(general)
+
+
+
+proposal: %general how are you today?
+    u1:(~im_good) I'm glad you are fine! ^gotoRandom(general)
+    u1:(~i_dont_feel_good) ^gotoReactivate(why) 
+
+
+
+proposal: %general are you here to see me?
+    u1: (~yes) cool ^nextProposal
+    u1: (~no) ^gotoReactivate(why)
+
+proposal: %general enjoying your day so far ?
+    u1: (~yes) Good to hear ^nextProposal
+    u1: (~no) ^gotoRandom(general)
+
+ 
+
+proposal: %general would you like to hear a joke
+    u1: (~yes) ^gotoReactivate(knock)
+    u1: (~no)  I promise you will like it, i wil say it anyway ^gotoReactivate(knock)
+
+
+
+
+
+proposal: %knock knock knock
+    u1: (who's there)  ^gotoRandom(joke)
+    
+proposal: %joke Yah
+    u1: (yah who) Not Yahoo i prefer Google
+
+proposal: %joke tank
+    u1:(tank who) You're welcome
+
+proposal: %joke To
+    u1:(who) To Whom
+proposal: %joke doctor
+    u1:(who) doctor who.Thats a great show, isnt it? I like the Cyber Men
+
+
+proposal: %general do you want some tea or cofee?
+   u1:(~yes) I will have 2cofee, 2 sugars, no milk thanks .
+   u1:(~no) okay, ^nextProposal
+
+
+
+# the robot asks User for his prefered color between blue and red.
+# this illustrate variables stored in $1 using '_' character.
+proposal: %general And what is your favorite color between Blue and Red ?
+    u1:(violet) Violet is my prefered color too ! ^nextProposal
+    u1:(_[blue red]) $1 is a very nice color and I prefered is violet. ^gotoRandom(general)
+    u1:(_[green yellow pink orange purple white black]) $1 is a nice color. ^sameProposal
+
+# Being polite, the robot always answers accordingly to thankfull sentences.
+u:(~thank_you) You're welcome
+
+
+# On any proposal if user asks to repeat, say again the same proposal.
+u:(~repeat_it) I'll repeat for you. ^sameProposal
+u:(what did you say) I said $Dialog/Answered
+
+u:(joke) would you like to hear a joke?
+  u1: (~yes) ^gotoReactivate(knock) 
+    u1: (~no)  I promise you will like it, i wil say it anyway ^gotoReactivate(knock)
+
+#talking about animals
+u:(animals) do you have a cat or a dog?
+   u1:(dog) is it a big dog?
+     u2:(~yes) make sure he has enough space to run ^goto(general)
+     u2:(~no) small dogs are very cute  ^goto(general)
+   u1:(cat) do you live in the countryside?
+     u2:(~yes) does your cat go outside?
+        u3:([~yes ~no]) does he hunt mice?
+           u4: ([~yes ~no]) Thats a good cat ^goto(general)
+     u2:(~no) i hope your flat is big enough
+   u1:(none) neither do I ^goto(general)
+
+# get name
+u:(my name is *) nice to meet you, ~myname nao ^goto(general)
+u:(~whats_your_name) ~myname nao. ^goto(general)
+
+
+
+
+
+
