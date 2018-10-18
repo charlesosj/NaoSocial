@@ -1,3 +1,4 @@
+﻿Created as a UROS summer project, fingers crossed this still works :) x
 # NaoSocial
 Installation
 For compatibility purposes we recommend installing Ubuntu version 14.04 to ensure everything runs smoothly.
