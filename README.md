@@ -10,6 +10,8 @@ ROS and Nao SDK`s
 Dependencies
 1.	Open the src folder of your catkin workspace you created in the first part in a terminal using cd ~/catkin_ws/src
 2.	Download the required dependencies into your src
-•	Naoqi Bridge git clone https://github.com/ros-naoqi/naoqi_bridge.git
-•	Driver git clone https://github.com/ros-naoqi/naoqi_driver.git
-•	Rviz Meshes sudo apt-get install ros-indigo-nao-meshes
+
+   Run the below
+-	Naoqi Bridge git clone https://github.com/ros-naoqi/naoqi_bridge.git
+-	Driver git clone https://github.com/ros-naoqi/naoqi_driver.git
+-	Rviz Meshes sudo apt-get install ros-indigo-nao-meshes
